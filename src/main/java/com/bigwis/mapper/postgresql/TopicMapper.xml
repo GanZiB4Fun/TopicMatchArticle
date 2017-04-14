@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigwis.mapper.postgresql.TopicMapper">
+
+
+    <select id="getNewTopics" resultType="com.bigwis.model.Topic">
+        SELECT title ,data_time,cd FROM topic.ods_topic
+        WHERE data_time BETWEEN #{start,jdbcType=TIMESTAMP} AND #{end,jdbcType=TIMESTAMP}
+    </select>
+
+</mapper>

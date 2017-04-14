@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigwis.mapper.mysql.TopicWordsMapper">
+
+    <insert id="insertNewTopicWords" parameterType="com.bigwis.model.TopicWords">
+        INSERT INTO topic_words (
+            topic_title,
+            topic_arr,
+            update_time,
+            cd
+        ) VALUES (
+            #{topic_title},
+            #{topic_arr},
+            #{update_time},
+            #{cd}
+        );
+    </insert>
+
+    <delete id="deleteOldTopicWords" parameterType="date">
+      DELETE FROM topic_words WHERE update_time &lt; #{before};
+    </delete>
+
+    <select id="getTopicWordsList" resultType="com.bigwis.model.TopicWords" parameterType="date">
+        SELECT * FROM topic_words WHERE update_time BETWEEN #{1} AND now()
+    </select>
+</mapper>

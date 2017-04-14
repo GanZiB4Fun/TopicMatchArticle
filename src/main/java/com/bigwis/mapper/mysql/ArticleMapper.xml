@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigwis.mapper.mysql.ArticleMapper">
+
+    <select id="getArticles" resultType="com.bigwis.model.Article">
+        select bigwe_user_articles_content.id as id,
+            user_login,
+            title,
+            bigwe_user_articles.tags,bigwe_user_articles_content.content,bigwe_user_articles.cd
+        from bigwe_user_articles
+        LEFT  outer join bigwe_user_articles_content
+        on bigwe_user_articles.id = bigwe_user_articles_content.pid
+        where user_login=#{user_login};
+    </select>
+</mapper>
